@@ -223,10 +223,7 @@ async def unzip(downloaded_file_name):
 async def covidindia(state):
     url = "https://www.mohfw.gov.in/data/datanew.json"
     req = requests.get(url).json()
-    for i in states:
-        if i == state:
-            return req[states.index(i)]
-    return None
+    return next((req[states.index(i)] for i in states if i == state), None)
 
 
 async def hide_inlinebot(borg, bot_name, text, chat_id, reply_to_id, c_lick=0):
